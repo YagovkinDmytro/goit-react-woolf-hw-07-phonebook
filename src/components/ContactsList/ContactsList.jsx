@@ -15,6 +15,9 @@ const ContactsList = () => {
   const error = useSelector(getError);
   const dispatch = useDispatch();
 
+  console.log(contacts);
+  console.log(filter);
+
   const handleDelete = contactId => {
     dispatch(deleteContact(contactId));
   };
