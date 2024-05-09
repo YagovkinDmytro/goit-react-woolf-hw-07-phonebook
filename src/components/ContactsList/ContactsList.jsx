@@ -1,22 +1,19 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact, fetchContacts } from '../../redux/operations';
 import {
-  getContacts,
-  getError,
-  getFilter,
-  getIsloading,
+  selectContacts,
+  selectError,
+  selectFilter,
+  selectIsloading,
 } from '../../redux/selectors';
 import { useEffect } from 'react';
 
 const ContactsList = () => {
-  const contacts = useSelector(getContacts);
-  const filter = useSelector(getFilter);
-  const isLoading = useSelector(getIsloading);
-  const error = useSelector(getError);
+  const contacts = useSelector(selectContacts);
+  const filter = useSelector(selectFilter);
+  const isLoading = useSelector(selectIsloading);
+  const error = useSelector(selectError);
   const dispatch = useDispatch();
-
-  console.log(contacts);
-  console.log(filter);
 
   const handleDelete = contactId => {
     dispatch(deleteContact(contactId));
@@ -34,14 +31,13 @@ const ContactsList = () => {
 
   return (
     <>
-      {isLoading && !error && <p>Request in progress...</p>}
+      {isLoading && <p>Request in progress...</p>}
       {error && <h1>{error}</h1>}
       <ul>
-        {contacts &&
-          contacts.length > 0 &&
-          setFilterContacts().map(({ id, name, number }) => (
+        {contacts && contacts.length > 0 ? (
+          setFilterContacts().map(({ id, name, phone }) => (
             <li className="contact-list-item" key={id}>
-              {name}: {number}
+              {name}: {phone}
               <button
                 className="contact-button delete"
                 type="button"
@@ -50,7 +46,10 @@ const ContactsList = () => {
                 Delete
               </button>
             </li>
-          ))}
+          ))
+        ) : (
+          <p>Contact list is empty, please add a new contact</p>
+        )}
       </ul>
     </>
   );
