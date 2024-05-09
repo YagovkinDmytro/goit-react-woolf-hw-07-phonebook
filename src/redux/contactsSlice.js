@@ -11,7 +11,7 @@ const handleRejected = (state, { payload }) => {
 };
 
 const contactsInitialState = {
-  items: null,
+  items: [],
   isLoading: false,
   error: null,
 };
@@ -43,15 +43,6 @@ const contactsSlice = createSlice({
       })
       .addCase(deleteContact.rejected, handleRejected);
   },
-
-  // addContact: (state, { payload }) => {
-  //   return { ...state, contacts: [...state.contacts, payload] };
-  // },
-  // deleteContact: (state, { payload }) => {
-  //   state.contacts = state.contacts.filter(elem => elem.id !== payload);
-  // },
 });
 
-// export const { addContact, deleteContact, filterContacts } =
-//   contactsList.actions;
 export const contactsSliceReducer = contactsSlice.reducer;

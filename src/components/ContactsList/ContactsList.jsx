@@ -29,8 +29,6 @@ const ContactsList = () => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  console.log(error);
-
   return (
     <>
       {isLoading && !error && <p>Request in progress...</p>}
