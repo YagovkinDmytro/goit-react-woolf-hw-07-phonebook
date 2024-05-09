@@ -12,7 +12,7 @@ const PhonebookForm = () => {
 
   const dispatch = useDispatch();
 
-  const createNewContact = (name, number) => {
+  const createNewContact = (name, phone) => {
     const isExist = contacts.some(
       contact => contact.name.toLowerCase() === name.toLowerCase()
     );
@@ -21,7 +21,7 @@ const PhonebookForm = () => {
       return;
     }
     const loginInputId = nanoid();
-    dispatch(addContact({ id: loginInputId, name, number }));
+    dispatch(addContact({ id: loginInputId, name, phone }));
   };
 
   const handleFormSubmit = evt => {
