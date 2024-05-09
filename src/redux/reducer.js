@@ -1,17 +1,17 @@
-import { filterContactsReducer } from './filterContacts/slice';
-import { contactsListReducer } from './contacts/slice';
+import { filterContactsSliceReducer } from './filterSlice';
+import { contactsSliceReducer } from './contactsSlice';
 
-import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+// import { persistReducer } from 'redux-persist';
+// import storage from 'redux-persist/lib/storage';
 
-const persistConfig = {
-  key: 'contacts',
-  storage,
-};
+// const persistConfig = {
+//   key: 'contacts',
+//   storage,
+// };
 
-const persistedReducer = persistReducer(persistConfig, contactsListReducer);
+// const persistedReducer = persistReducer(persistConfig, contactsListReducer);
 
 export const rootReducer = {
-  contacts: persistedReducer,
-  filter: filterContactsReducer,
+  contacts: contactsSliceReducer,
+  filter: filterContactsSliceReducer,
 };

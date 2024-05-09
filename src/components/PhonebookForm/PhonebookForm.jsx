@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
-import { addContact } from '../../redux/contacts/slice';
 import { getContacts } from '../../redux/selectors';
+import { addContact } from '../../redux/operations';
 
 const PhonebookForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  const { contacts } = useSelector(getContacts);
+  const contacts = useSelector(getContacts);
 
   const dispatch = useDispatch();
 
@@ -26,8 +26,9 @@ const PhonebookForm = () => {
 
   const handleFormSubmit = evt => {
     evt.preventDefault();
+    const form = evt.target;
     createNewContact(name, number);
-    resetForm();
+    form.reset();
   };
 
   const handleChange = ({ target: { value, name } }) => {
@@ -39,10 +40,10 @@ const PhonebookForm = () => {
     }
   };
 
-  const resetForm = () => {
-    setName('');
-    setNumber('');
-  };
+  // const resetForm = () => {
+  //   setName('');
+  //   setNumber('');
+  // };
 
   return (
     <>
