@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { nanoid } from 'nanoid';
 import { selectContacts } from '../../redux/selectors';
 import { addContact } from '../../redux/operations';
 
@@ -20,7 +19,6 @@ const PhonebookForm = () => {
       alert(`${name} is already in contacts.`);
       return;
     }
-    // const loginInputId = nanoid();
     dispatch(addContact({ name, phone }));
   };
 
