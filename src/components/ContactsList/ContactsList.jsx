@@ -3,26 +3,21 @@ import { deleteContact, fetchContacts } from '../../redux/operations';
 import {
   selectContacts,
   selectError,
-  selectFilter,
+  selectFilterContacts,
   selectIsloading,
 } from '../../redux/selectors';
 import { useEffect } from 'react';
 
 const ContactsList = () => {
   const contacts = useSelector(selectContacts);
-  const filter = useSelector(selectFilter);
   const isLoading = useSelector(selectIsloading);
   const error = useSelector(selectError);
+  const filterContactsArr = useSelector(selectFilterContacts);
+
   const dispatch = useDispatch();
 
   const handleDelete = contactId => {
     dispatch(deleteContact(contactId));
-  };
-
-  const setFilterContacts = () => {
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().startsWith(filter.toLowerCase())
-    );
   };
 
   useEffect(() => {
@@ -35,7 +30,7 @@ const ContactsList = () => {
       {error && <h1>{error}</h1>}
       <ul>
         {contacts && contacts.length > 0 ? (
-          setFilterContacts().map(({ id, name, phone }) => (
+          filterContactsArr.map(({ id, name, phone }) => (
             <li className="contact-list-item" key={id}>
               {name}: {phone}
               <button

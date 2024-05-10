@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 import { selectContacts } from '../../redux/selectors';
 import { addContact } from '../../redux/operations';
 
@@ -20,15 +20,15 @@ const PhonebookForm = () => {
       alert(`${name} is already in contacts.`);
       return;
     }
-    const loginInputId = nanoid();
-    dispatch(addContact({ id: loginInputId, name, phone }));
+    // const loginInputId = nanoid();
+    dispatch(addContact({ name, phone }));
   };
 
   const handleFormSubmit = evt => {
     evt.preventDefault();
-    const form = evt.target;
+
     createNewContact(name, number);
-    form.reset();
+    resetForm();
   };
 
   const handleChange = ({ target: { value, name } }) => {
@@ -40,10 +40,10 @@ const PhonebookForm = () => {
     }
   };
 
-  // const resetForm = () => {
-  //   setName('');
-  //   setNumber('');
-  // };
+  const resetForm = () => {
+    setName('');
+    setNumber('');
+  };
 
   return (
     <>

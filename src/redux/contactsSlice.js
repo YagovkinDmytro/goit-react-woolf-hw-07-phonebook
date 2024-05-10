@@ -11,7 +11,9 @@ const handleRejected = (state, { payload }) => {
 };
 
 const contactsInitialState = {
-  contacts: { items: [], isLoading: false, error: null },
+  items: [],
+  isLoading: false,
+  error: null,
 };
 
 const contactsSlice = createSlice({
