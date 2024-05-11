@@ -13,6 +13,7 @@ const ContactsList = () => {
   const isLoading = useSelector(selectIsloading);
   const error = useSelector(selectError);
   const filterContactsArr = useSelector(selectFilterContacts);
+  console.log(contacts);
 
   const dispatch = useDispatch();
 
